@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -14,9 +15,9 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/emails', [MailController::class, 'index'])->middleware(['auth', 'verified'])->name('emails');
+Route::get('/emails/fetch', [MailController::class, 'fetch'])->middleware(['auth', 'verified'])->name('emails.fetch');
+Route::get('/emails/{email}', [MailController::class, 'show'])->middleware(['auth', 'verified'])->name('emails.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

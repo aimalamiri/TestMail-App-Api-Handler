@@ -38,5 +38,6 @@ return [
     'test_mail' => [
         'key' => env('TEST_MAIL_API_KEY'),
         'url' => env('TEST_MAIL_API_URL'),
+        'namespace' => env('TEST_MAIL_NAMESPACE'),
     ],
 ];
